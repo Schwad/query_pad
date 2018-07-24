@@ -17,6 +17,7 @@
 /storage/*
 
 /node_modules
+/config/database.yml
 /yarn-error.log
 
 /public/assets
