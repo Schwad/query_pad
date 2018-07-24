@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: QueryPad_development
+
+test:
+  <<: *default
+  database: QueryPad_test
+
+production:
+  <<: *default
+  database: QueryPad_production
+  username: QueryPad
+  password: <%= ENV['QUERYPAD_DATABASE_PASSWORD'] %>
