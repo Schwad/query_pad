@@ -8,6 +8,8 @@ This is a private, internal application that allows users to post and answer que
 
 I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (devise, elasticsearch, postgres, bootstrap, heroku deployment, RSpec, Capybara).
 
+For markdown processing, a `markdown_helper.rb` is implemented giving access to `markdown(text)` throughout the application. The rubygem [redcarpet](https://github.com/vmg/redcarpet) is utilised. HTML is properly escaped - even though this is an internal tool.
+
 Its notable features are:
 
 - New users may upvote (not downvote) questions or answers

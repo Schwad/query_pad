@@ -1,5 +1,5 @@
 %p
-  %em= answer.body
+  %em= markdown(answer.body)
 %p
   %em= "#{ answer.user.email } | #{ distance_of_time_in_words(Time.now, answer.created_at) } ago#{ answer.time_ago_if_edited }"
 - if current_user.answers.include?(answer)
