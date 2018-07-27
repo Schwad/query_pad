@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   devise :rememberable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  has_many :questions
+  has_many :answers
+  has_many :answered_questions, through: :answers, class_name: 'Question'
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

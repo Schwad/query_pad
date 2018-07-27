@@ -1,0 +1,10 @@
+%h1 QueryPad Questions Portal
+
+%p= link_to 'New Question', new_user_question_path(current_user)
+
+%table
+  %tbody
+  - @questions.each do |question|
+    %tr
+      %td= question.user.email
+      %td= link_to question.title, question

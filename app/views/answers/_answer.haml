@@ -1,0 +1,8 @@
+%p
+  %em= answer.body
+%p
+  %em= "#{ answer.user.email } | #{ distance_of_time_in_words(Time.now, answer.created_at) } ago#{ answer.time_ago_if_edited }"
+- if current_user.answers.include?(answer)
+  %p= link_to 'edit answer', edit_user_answer_path(current_user, answer)
+  %p= link_to 'delete answer', user_answer_path(current_user, answer), method: :delete
+%hr
