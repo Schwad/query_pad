@@ -1,0 +1,10 @@
+= form_for [current_user, @question] do |f|
+  = f.hidden_field :user_id
+  %p
+    = f.label :title
+    = f.text_field :title
+  %p
+    = f.label :body
+    = f.text_area :body
+  %p
+    = f.submit 'Submit'

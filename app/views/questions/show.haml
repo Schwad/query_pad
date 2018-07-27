@@ -1,0 +1,10 @@
+%h1= @question.title
+%p
+  %em= "#{ @question.user.email } | #{ distance_of_time_in_words(Time.now, @question.created_at) } ago#{ @question.time_ago_if_edited }"
+%p= @question.body
+- if current_user.questions.include?(@question)
+  %p= link_to 'edit', edit_user_question_path(current_user, @question)
+  %p= link_to 'delete', user_question_path(current_user, @question), method: :delete
+%hr
+= render @question.answers
+%p= link_to 'Add Answer', new_user_answer_path(current_user, question_id: @question)

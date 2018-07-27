@@ -1,7 +1,2 @@
 %h1
   Welcome Home!
-
-- if current_user
-  %p= link_to 'Sign Out', destroy_user_session_path, method: :delete
-- else
-  %p= link_to 'Sign in with Google', user_google_oauth2_omniauth_authorize_path
