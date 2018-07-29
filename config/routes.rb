@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     resources :questions, except: %i[index show]
   end
 
-  resources :questions, only: %i[index show]
+  resources :questions, only: %i[index show] do
+    collection do
+      get :search
+      post :search
+    end
+  end
 
   resources :users, only: [] do
     resources :answers, except: %i[index show]

@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <%= form_with url: search_questions_path, local: true do |f| %>
+      <%= f.label :q, 'Search Questions' %>
+      <%= f.search_field :q %>
+      <%= f.submit 'Search' %>
+    <% end %>
     <% if current_user %>
       <p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </p>
     <% else %>

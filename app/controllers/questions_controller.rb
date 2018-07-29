@@ -45,6 +45,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def search
+    @questions = Question.search_for(params[:q])
+  end
+
   private
 
   def authorise_user
