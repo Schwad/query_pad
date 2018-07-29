@@ -10,6 +10,8 @@ I approached this project very simply. I aimed to use the tools closest to my to
 
 For markdown processing, a `markdown_helper.rb` is implemented giving access to `markdown(text)` throughout the application. The rubygem [redcarpet](https://github.com/vmg/redcarpet) is utilised. HTML is properly escaped - even though this is an internal tool.
 
+For searching, this application utilises the [pg_search gem](https://github.com/Casecommons/pg_search). This application applies this gem to use PostgreSQL' built-in [full text tsearch](https://www.postgresql.org/docs/current/static/textsearch-intro.html) as well as the enabled PostgreSQL [trigram extension](https://www.postgresql.org/docs/current/static/pgtrgm.html) to assist in 'fuzzy matching' search queries.
+
 Its notable features are:
 
 - New users may upvote (not downvote) questions or answers
