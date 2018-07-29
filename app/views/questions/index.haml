@@ -4,7 +4,4 @@
 
 %table
   %tbody
-  - @questions.each do |question|
-    %tr
-      %td= question.user.email
-      %td= link_to question.title, question
+    = render @questions
