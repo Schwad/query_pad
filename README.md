@@ -8,7 +8,7 @@ This is a private, internal application that allows users to post and answer que
 
 I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (devise, elasticsearch, postgres, bootstrap, heroku deployment, RSpec, Capybara).
 
-For markdown processing, `markdown_helper.rb` gives access to `markdown(text)` throughout the application. This is down with [redcarpet](https://github.com/vmg/redcarpet). HTML is properly escaped - even though this is an internal tool.
+For markdown processing, `markdown_helper.rb` gives access to `markdown(text)` throughout the application. This is done with [redcarpet](https://github.com/vmg/redcarpet). HTML is properly escaped - even though this is an internal tool.
 
 For searching, this application utilises the [pg_search gem](https://github.com/Casecommons/pg_search). This application applies this gem to use PostgreSQL' built-in [full text tsearch](https://www.postgresql.org/docs/current/static/textsearch-intro.html) as well as the enabled PostgreSQL [trigram extension](https://www.postgresql.org/docs/current/static/pgtrgm.html) to assist in 'fuzzy matching' search queries.
 
