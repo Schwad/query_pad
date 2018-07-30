@@ -85,4 +85,31 @@ feature 'Questions' do
       expect(page).to have_content('You need to sign in or sign up before continuing')
     end
   end
+
+  context 'power user' do
+    before(:each) do
+      login_as(user, scope: :user)
+      user.update_column(:score, 44)
+      visit question_path(other_question)
+    end
+    
+    scenario 'cannot remove posts' do
+      expect(page).not_to have_content('Delete')
+    end
+  end
+
+  context 'moderator user' do
+    before(:each) do
+      login_as(user, scope: :user)
+      user.update_column(:score, 54)
+      visit question_path(other_question)
+    end
+
+    scenario 'can remove others poster posts' do
+      within('div#question') do
+        click_on 'delete'
+      end
+      expect(page).to have_content('Question successfully deleted!')
+    end
+  end
 end

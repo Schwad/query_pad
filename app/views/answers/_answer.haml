@@ -1,8 +1,11 @@
 %p
-  %em= markdown(answer.body)
+  = markdown(answer.body)
+%p= "Score: #{answer.score}"
 %p
-  %em= "#{ answer.user.email } | #{ distance_of_time_in_words(Time.now, answer.created_at) } ago#{ answer.time_ago_if_edited }"
-- if current_user.answers.include?(answer)
+  %em= "#{ answer.user.email }#{ answer.user.decorate.flair } | #{ distance_of_time_in_words(Time.now, answer.created_at) } ago#{ answer.time_ago_if_edited }"
+- if current_user.answers.include?(answer) || moderator_user
   %p= link_to 'edit answer', edit_user_answer_path(current_user, answer)
   %p= link_to 'delete answer', user_answer_path(current_user, answer), method: :delete
+- unless current_user.answers.include?(answer)
+  %p= render 'votes/votable', resource: answer, vote_cast: current_user.vote_cast(answer), question: @question
 %hr

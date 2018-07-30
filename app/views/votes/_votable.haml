@@ -1,0 +1,3 @@
+%p= link_to "#{vote_cast == 'Upvote' ? '🔺' : '⬆️'}", user_votes_path(current_user, vote: { votable_type: resource.class, votable_id: resource.id, user_id: current_user.id, upvote: true, question: question.id }), method: :post #, remote: true
+- if power_user
+  = link_to "#{vote_cast == 'Downvote' ? '| 🔻' : '| ⬇️'}", user_votes_path(current_user, vote: { votable_type: resource.class, votable_id: resource.id, user_id: current_user.id, upvote: false, question: question.id }), method: :post #, remote: true
