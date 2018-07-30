@@ -44,7 +44,7 @@ class AnswersController < ApplicationController
   private
 
   def authorise_user
-    if current_user.id != @answer.user_id
+    if current_user.id != @answer.user_id && !current_user.moderator_user
       flash[:alert] = 'You are not allowed to manipulate this resource'
       redirect_to questions_path and return
     end
