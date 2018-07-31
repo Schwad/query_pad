@@ -1,9 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
   before_action :authorise_user, only: %i[edit update destroy]
+  before_action :set_query, only: :search
 
   def index
-    @questions = Question.all.order(score: :desc)
+    @questions = Question.all.order(score: :desc).includes(:answers, :user).page params[:page] if sorting_strategy.blank?
+    @questions = Question.all.order(created_at: :desc).includes(:answers, :user).page params[:page] if sorting_strategy == 'recent'
   end
 
   def show; end
@@ -46,7 +48,11 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    @questions = Question.search_for(params[:q])
+    @questions = Question.search_for(@query).page params[:page]
+  end
+
+  def sorting_strategy
+    @sorting_strategy ||= params[:sorting_strategy]
   end
 
   private
@@ -60,6 +66,10 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_query
+    @query ||= params[:q]
   end
 
   def question_params

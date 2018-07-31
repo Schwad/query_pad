@@ -1,8 +1,11 @@
 = form_for [current_user, @answer] do |f|
   = f.hidden_field :question_id
   = f.hidden_field :user_id
-  %p
-    = f.label :body
-    = f.text_area :body, cols: "30", rows: "10"
-  %p
-    = f.submit 'Submit'
+  .row
+    .col-md-12
+      .form-group
+        = f.label :body
+        = f.text_area :body, cols: "30", rows: "10", class: 'form-control'
+  .row
+    .col-md-12
+      = f.submit 'Submit', class: 'btn btn-md btn-outline-success'

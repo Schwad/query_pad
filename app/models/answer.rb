@@ -1,7 +1,7 @@
 class Answer < ApplicationRecord
   acts_as_paranoid
   belongs_to :user
-  belongs_to :question
+  belongs_to :question, touch: true
   has_many :votes, as: :votable
 
   validates :body, presence: true

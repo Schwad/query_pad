@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   include PgSearch
+  paginates_per 20
   acts_as_paranoid
   belongs_to :user
   has_many :answers

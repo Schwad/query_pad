@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def power_user
-    score > 25
+    score.between?(25,50)
   end
 
   def moderator_user

@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def power_user
-    current_user.score > 25
+    current_user.power_user
   end
 
   def moderator_user
-    current_user.score > 50
+    current_user.moderator_user
   end
 end

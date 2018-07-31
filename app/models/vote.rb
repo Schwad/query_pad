@@ -29,6 +29,6 @@ class Vote < ApplicationRecord
 
   def decrement_scores
     votable.user.decrement_score
-    votable.increment_score
+    votable.decrement_score
   end
 end
