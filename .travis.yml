@@ -22,8 +22,10 @@ jobs:
   - stage: rspec
     script: bin/rake
   - stage: brakeman
+    before_script: bundle install
     script: bundle exec brakeman
   - stage: bundler-audit
+    before_script: bundle install
     script: bundle exec bundler-audit
 deploy:
   provider: heroku
