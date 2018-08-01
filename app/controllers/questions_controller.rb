@@ -10,6 +10,11 @@ class QuestionsController < ApplicationController
 
   def show; end
 
+  def my_questions
+    @questions = current_user.questions.order(score: :desc).includes(:answers, :user).page params[:page] if sorting_strategy.blank?
+    @questions = current_user.questions.order(created_at: :desc).includes(:answers, :user).page params[:page] if sorting_strategy == 'recent'
+  end
+
   def new
     @question = Question.new(user_id: current_user.id)
   end

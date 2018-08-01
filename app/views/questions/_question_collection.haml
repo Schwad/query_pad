@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-12
+      - if @sorting_strategy
+        %p= link_to 'Sort by most popular', questions_path, class: 'btn btn-outline-success'
+      - else
+        %p= link_to 'Sort by most recent', questions_path(sorting_strategy: 'recent'), class: 'btn btn-outline-secondary'
+  = paginate @questions
+  = render @questions
+  = paginate @questions

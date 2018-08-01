@@ -10,6 +10,8 @@
         %li.nav-item
           = link_to 'Questions', questions_path, class: 'nav-link'
         %li.nav-item
+          = link_to 'My Questions', my_questions_questions_path, class: 'nav-link'
+        %li.nav-item
           = link_to 'New Question', new_user_question_path(current_user), class: 'nav-link'
         %li.nav-item
           = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
