@@ -1,5 +1,7 @@
-%h1= "Search results for #{@query}"
+%h1= "Search results for '#{@query}'"
 
 %table
   %tbody
+    = paginate @questions
     = render @questions
+    = paginate @questions

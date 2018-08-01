@@ -20,6 +20,12 @@ gem 'paranoia', '~> 2.2'
 gem 'redcarpet', '>= 3.4.0'
 gem 'pg_search'
 gem 'draper'
+gem 'font-awesome-rails'
+gem 'kaminari'
+gem 'progress_bar', require: false
+gem 'brakeman'
+gem 'bundler-audit'
+gem 'coveralls', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -13,12 +13,12 @@ feature 'Questions' do
 
     scenario 'sees questions when logged in' do
       visit root_path
-      expect(page).to have_content('QueryPad Questions Portal')
+      expect(page).to have_content('Sort by most recent')
     end
 
     scenario 'can view a collection of questions index page' do
       visit questions_path
-      expect(page).to have_content('QueryPad Questions Portal')
+      expect(page).to have_content('Sort by most recent')
       expect(page).to have_content(question.title)
     end
 
@@ -92,7 +92,7 @@ feature 'Questions' do
       user.update_column(:score, 44)
       visit question_path(other_question)
     end
-    
+
     scenario 'cannot remove posts' do
       expect(page).not_to have_content('Delete')
     end

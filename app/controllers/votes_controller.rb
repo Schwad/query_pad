@@ -5,8 +5,10 @@ class VotesController < ApplicationController
   def create
     clear_opposite_votes
     if existing_votes.length > 0
+      flash[:alert] = 'You have cancelled your vote'
       existing_votes.destroy_all
     else
+      flash[:notice] = 'You have successfully voted!'
       @vote = Vote.create(vote_params)
     end
     redirect_to question_path(params[:vote][:question])

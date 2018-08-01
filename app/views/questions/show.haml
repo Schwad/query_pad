@@ -1,14 +1,37 @@
-#question
-  %h1= "#{@question.title} - #{@question.score}"
-  %p
-    %em= "#{ @question.user.email }#{ @question.user.decorate.flair } | #{ distance_of_time_in_words(Time.now, @question.created_at) } ago#{ @question.time_ago_if_edited }"
-  %p= markdown(@question.body)
-  - unless current_user.questions.include?(@question)
-    %p= render 'votes/votable', resource: @question, vote_cast: current_user.vote_cast(@question), question: @question
-  - if current_user.questions.include?(@question) || moderator_user
-    %p= link_to 'edit', edit_user_question_path(current_user, @question)
-    %p= link_to 'delete', user_question_path(current_user, @question), method: :delete
-%hr
-#answers
-  = render @question.answers.order(score: :desc)
-%p= link_to 'Add Answer', new_user_answer_path(current_user, question_id: @question)
+.container
+  #question
+    .row
+      .col-md-12
+        %h1
+          = @question.title
+          %span.badge.badge-info
+            = @question.score
+    - if current_user.questions.include?(@question) || moderator_user
+      %hr
+      %br
+      .row.form-group
+        .col-md-5
+          = link_to 'edit', edit_user_question_path(current_user, @question), class: 'btn btn-md btn-outline-info'
+          = link_to 'delete', user_question_path(current_user, @question), method: :delete, class: 'btn btn-md btn-outline-danger'
+    - unless current_user.questions.include?(@question)
+      .row
+        .col-md-12
+          = render 'votes/votable', resource: @question, vote_cast: current_user.vote_cast(@question), question: @question
+    .row
+      .col-md-12
+        %em= "#{ @question.user.email } #{ @question.user.decorate.flair } | #{ distance_of_time_in_words(Time.now, @question.created_at) } ago#{ @question.time_ago_if_edited }".html_safe
+    .row
+      .col-md-12
+        = markdown(@question.body)
+  #answers
+    .row
+      .col-md-12
+        %h2
+          Answers
+    .row
+      .col-md-12
+        = link_to 'Add Answer', new_user_answer_path(current_user, question_id: @question)
+      %hr
+      .row
+        .col-md-12
+          = render @question.answers.order(score: :desc)

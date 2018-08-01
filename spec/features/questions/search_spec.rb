@@ -10,7 +10,7 @@ feature 'Searches' do
     end
     scenario 'search matching value' do
       visit root_path
-      fill_in 'Search Questions', with: 'Where do I find the nearest food truck?'
+      fill_in 'q', with: 'Where do I find the nearest food truck?'
       click_on 'Search'
       expect(page).to have_content('Where do I find the nearest food truck?')
       expect(page).not_to have_content('What is the meaning of development?')
@@ -23,7 +23,7 @@ feature 'Searches' do
     end
     scenario 'search matching value' do
       visit root_path
-      fill_in 'Search Questions', with: 'I just want some tacos or burritos'
+      fill_in 'q', with: 'I just want some tacos or burritos'
       click_on 'Search'
       expect(page).to have_content('Where do I find the nearest food truck?')
       expect(page).not_to have_content('What is the meaning of development?')
