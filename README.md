@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Schwad/query_pad.svg?token=hzSwAUFrpt6kNMnH6gAx&branch=master)](https://travis-ci.com/Schwad/query_pad)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d4197eda5b2dc402411d/maintainability)](https://codeclimate.com/github/Schwad/query_pad/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/Schwad/query_pad/badge.svg)](https://coveralls.io/github/Schwad/query_pad)
 
 ## Notes from the author
 
