@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resources :questions, except: %i[index show]
     resources :votes, only: %i[create destroy]
+    resources :answers, except: %i[index show]
   end
 
   resources :questions, only: %i[index show] do
@@ -17,9 +18,5 @@ Rails.application.routes.draw do
       post :search
       get :my_questions
     end
-  end
-
-  resources :users, only: [] do
-    resources :answers, except: %i[index show]
   end
 end
