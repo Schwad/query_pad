@@ -2,21 +2,21 @@ sudo: required
 language: ruby
 cache: bundler
 rvm:
-  - 2.5.1
+- 2.5.1
 services:
-  - postgresql
+- postgresql
 notifications:
   slack: patagonia-mara:xaEjhNnxt9qqXGyyqyGXUfDF
 before_install:
-  - openssl aes-256-cbc -K $encrypted_231b5c201e7b_key -iv $encrypted_231b5c201e7b_iv
-  - in master.key.enc -out config/master.key -d
-  - cp config/database.yml.example config/database.yml
-  - gem update --system
+- openssl aes-256-cbc -K $encrypted_231b5c201e7b_key -iv $encrypted_231b5c201e7b_iv
+  -in master.key.enc -out config/master.key -d
+- cp config/database.yml.example config/database.yml
+- gem update --system
 install:
-  - bin/bundle install --path vendor/bundle
+- bin/bundle install --path vendor/bundle
 before_script:
-  - bin/rake db:create RAILS_ENV=test
-  - bin/rake db:migrate RAILS_ENV=test
+- bin/rake db:create RAILS_ENV=test
+- bin/rake db:migrate RAILS_ENV=test
 jobs:
   include:
   - stage: rspec
@@ -31,5 +31,5 @@ deploy:
     secure: VDGyDJ2q04wZEdXX/L2kKcUH+rlWkpFDgJMEwYM7h/jeatjCd5jt08KZrhpwnsff0B9ZzI8q28qnU3QoVBkVbJvzEIgx8iQ4eTmlbHXak7bWHLPfHZRRJS4+hM43ABeAuxtHpbiL2zFvN9N+o90/r3ogPGCtNvwwv6nw3gCgCQjW2Cf0Lu8BHtwgeXV2oyTVeHEULEfvGoH11QyN8lYGtfYrrOhPB1OKFiGiciYpaZnqWxYrknM9KCi7vob+bTeiVy1jkFLg4B1ImJU4vFJqm1ivYaIG286KoZMXI2PAle5nGvHzwyxTvrEX4BwNYvP43Zyxno8YLIokdy8d5Ac55rK8wErZkJ9Y7FfjAPMC3v/p624qGTw6rpOpQdEYzbhUWAfv/CCdotVdik8blz94hxVf7Xd7vl6lsTaVwOKiS71PL71IlQhURx0qweo7VSJqWTbUIXH5KC7GlbelzME+OW65/kseNqjpLFnB2Z5TgJ0OxBpELhWXM+BAtxYeN88rEEbDpjOngYMSB8VOjs24S9C7v9IZnhuv3sRdj+oTzOqHb2k7iiQdY/INcdZ02UaeXSW4d+6JcAIZeO/10O3WMBjM8J2YMj9l33zRRcJwJVF+57t57UmXA17LguwJ3Dr/AhDOCwSlS5ZhJwN+XGQr39jlbQADaVsevyuAIgo2xuU=
   on: master
   run:
-    - "rake db:migrate"
-    - "rake cleanup"
+  - rake db:migrate
+  - rake cleanup
