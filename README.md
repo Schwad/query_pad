@@ -20,7 +20,7 @@ For searching, QueryPad utilises the [pg_search gem](https://github.com/Casecomm
 
 I used the [decorator pattern](https://github.com/drapergem/draper) within the application for [user flair](app/decorators/user_decorator.rb).
 
-There is a user voting feature- employing polymorphic associations with `Vote` to `Question` and `Answer` (associating to `votable`). Upvote vs. downvote is set on a type attribute on `vote`.
+There is a user voting feature employing polymorphic associations with `Vote` to `Question` and `Answer` (associating to `votable`). Upvote vs. downvote is set on a type attribute on `vote`.
 
 Other notable features:
 
