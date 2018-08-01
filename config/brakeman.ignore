@@ -23,17 +23,17 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
-      "fingerprint": "ec3db74926ffca6de841951e02b22dc623fed7cf50a02abe1a60b5cd7726f718",
+      "fingerprint": "7cdcc0bc68acd35b61b838b892626bc06a60a49a3432b725bbc101f09e8d57d1",
       "check_name": "Render",
       "message": "Render path contains parameter value",
-      "file": "app/views/questions/index.haml",
+      "file": "app/views/questions/_question_collection.haml",
       "line": 9,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => (Question.all.order(:score => :desc).includes(:answers, :user).page(params[:page]) or Question.all.order(:created_at => :desc).includes(:answers, :user).page(params[:page])), {})",
-      "render_path": [{"type":"controller","class":"QuestionsController","method":"index","line":9,"file":"app/controllers/questions_controller.rb"}],
+      "render_path": [{"type":"controller","class":"QuestionsController","method":"index","line":9,"file":"app/controllers/questions_controller.rb"},{"type":"template","name":"questions/index","line":1,"file":"app/views/questions/index.haml"}],
       "location": {
         "type": "template",
-        "template": "questions/index"
+        "template": "questions/_question_collection"
       },
       "user_input": "params[:page]",
       "confidence": "Weak",
@@ -46,7 +46,7 @@
       "check_name": "CrossSiteScripting",
       "message": "Unescaped model attribute",
       "file": "app/views/questions/show.haml",
-      "line": 22,
+      "line": 21,
       "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "Question.find(params[:id]).user.email",
       "render_path": [{"type":"controller","class":"QuestionsController","method":"show","line":12,"file":"app/controllers/questions_controller.rb"}],
@@ -59,6 +59,6 @@
       "note": ""
     }
   ],
-  "updated": "2018-08-01 18:19:33 +0100",
+  "updated": "2018-08-01 23:01:52 +0100",
   "brakeman_version": "4.3.1"
 }
