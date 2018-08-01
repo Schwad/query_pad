@@ -18,24 +18,24 @@ For markdown processing, `markdown_helper.rb` gives access to `markdown(text)` t
 
 For searching, QueryPad utilises the [pg_search gem](https://github.com/Casecommons/pg_search). It applies this gem to use PostgreSQL' built-in [full text tsearch](https://www.postgresql.org/docs/current/static/textsearch-intro.html) as well as the enabled PostgreSQL [trigram extension](https://www.postgresql.org/docs/current/static/pgtrgm.html) to assist in 'fuzzy matching' search queries.
 
-One special mention is the [decorator pattern](https://github.com/drapergem/draper) initialised at particular points within the application (such as [user flair](app/decorators/user_decorator.rb)).
+I used the [decorator pattern](https://github.com/drapergem/draper) within the application for [user flair](app/decorators/user_decorator.rb).
 
 There is a user voting feature- employing polymorphic associations with `Vote` to `Question` and `Answer` (associating to `votable`). Upvote vs. downvote is set on a type attribute on `vote`.
 
 Other notable features:
 
-- Users obtain a rolling 'score' that is simply the sum of upvotes on their questions and answers. This is set with `increment` counter cache directly to the database.
+- Users obtain a rolling 'score' that is simply the sum of upvotes on their questions and answers. This is set with `increment` counter cache directly to the database. Removing a vote or adding a downvote decrements scores on users, questions and answers.
 - Users with a 'score' above 25 may downvote and become a 'power user' with flair.
 - Users with a 'score' above 50 may 'delete' posts and become a 'moderator', also with flair.
-  * 'Deleted' posts are preserved in the database but hidden on the front end (using [acts_as_paranoid](https://github.com/rubysherpas/paranoia)).
-- You can sort question index by recent or most popular.
+- 'Deleted' posts are preserved in the database but hidden on the front end (using [acts_as_paranoid](https://github.com/rubysherpas/paranoia)).
+- You can sort questions on index by recently created or highest score.
 - CI build hooked up with [Travis-ci](https://travis-ci.com/Schwad/query_pad)
 
 ### Constraints
 
-I built this application expecting a relatively small database (< 10k Q's+A's), and a commensurate request volume. I also limited myself to a seven-day build-cycle, working in evenings where permissible. This allowed me to fulfill the specifications and add a handful of extended features, detailed below. The application must pass a traditional CI build (RSpec/brakeman/bundler-audit) and have >95% test coverage.
+I built this application expecting a relatively small database (< 10k Q's+A's), and a commensurate request volume. I also limited myself to a seven-day build-cycle, working in evenings where permissible. This allowed me to fulfill the specifications and add a handful of extended features. I held myself to the standard that the application must pass a traditional CI build (RSpec/brakeman/bundler-audit) and have >95% test coverage.
 
-This application observes the [YAGNI](https://ronjeffries.com/xprog/articles/practices/pracnotneed/) and [KISS](http://people.apache.org/~fhanik/kiss.html) principles. If this application were to scale much larger than a normal internal tool, I would look to use [searchkick](https://github.com/ankane/searchkick) for elasticsearch implementation. I could see upvote/downvote logic being a pinchpoint at large scales. That could be resolved using read/write to a [redis store](https://github.com/redis/redis-rb). Anything beyond the simple current authorities of 'power user' and 'moderator' would benefit from a [CanCanCan](https://github.com/CanCanCommunity/cancancan) or [Pundit](https://github.com/varvet/pundit) authorisation library.
+This application observes the [YAGNI](https://ronjeffries.com/xprog/articles/practices/pracnotneed/) and [KISS](http://people.apache.org/~fhanik/kiss.html) principles. If QueryPad were to scale much larger than a normal internal tool, I would look to use [searchkick](https://github.com/ankane/searchkick) for elasticsearch implementation. I could see upvote/downvote logic being a pinchpoint at large scales. That could be resolved using read/write to a [redis store](https://github.com/redis/redis-rb). Anything beyond the simple current authorities of 'power user' and 'moderator' would benefit from a [CanCanCan](https://github.com/CanCanCommunity/cancancan) or [Pundit](https://github.com/varvet/pundit) authorisation library.
 
 ## Versions
 
