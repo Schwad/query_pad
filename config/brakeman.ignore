@@ -1,0 +1,64 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "421135f5a4efa0cd8de4e3b0d8f0f47899b94d615b7e137956999be3e91e5bb3",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/omniauth_callbacks_controller.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(after_sign_in_path_for(User.where(:provider => request.env[\"omniauth.auth\"][\"provider\"], :uid => request.env[\"omniauth.auth\"][\"uid\"]).first_or_initialize(:email => request.env[\"omniauth.auth\"][\"info\"][\"email\"])))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "OmniauthCallbacksController",
+        "method": "google_oauth2"
+      },
+      "user_input": "User.where(:provider => request.env[\"omniauth.auth\"][\"provider\"], :uid => request.env[\"omniauth.auth\"][\"uid\"]).first_or_initialize(:email => request.env[\"omniauth.auth\"][\"info\"][\"email\"])",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "ec3db74926ffca6de841951e02b22dc623fed7cf50a02abe1a60b5cd7726f718",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/questions/index.haml",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => (Question.all.order(:score => :desc).includes(:answers, :user).page(params[:page]) or Question.all.order(:created_at => :desc).includes(:answers, :user).page(params[:page])), {})",
+      "render_path": [{"type":"controller","class":"QuestionsController","method":"index","line":9,"file":"app/controllers/questions_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "questions/index"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "fefd67783f8dede3eb2bff46e8f5c132c217cdd2e90e98f25e84324b6c5bf948",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/questions/show.haml",
+      "line": 22,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Question.find(params[:id]).user.email",
+      "render_path": [{"type":"controller","class":"QuestionsController","method":"show","line":12,"file":"app/controllers/questions_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "questions/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2018-08-01 18:19:33 +0100",
+  "brakeman_version": "4.3.1"
+}
