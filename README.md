@@ -8,15 +8,17 @@
 
 This is a private, internal application that allows users to post and answer questions. They may also search questions.
 
-I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (devise, elasticsearch, postgres, bootstrap, heroku deployment, RSpec, Capybara).
+### Approach
+
+I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (`devise`, `elasticsearch`, `postgres`, `bootstrap`, `heroku` deployment, `RSpec`, `Capybara`).
+
+### Feature/Code notes
 
 For markdown processing, `markdown_helper.rb` gives access to `markdown(text)` throughout the application. This is done with [redcarpet](https://github.com/vmg/redcarpet). HTML is properly escaped - even though this is an internal tool.
 
 For searching, this application utilises the [pg_search gem](https://github.com/Casecommons/pg_search). This application applies this gem to use PostgreSQL' built-in [full text tsearch](https://www.postgresql.org/docs/current/static/textsearch-intro.html) as well as the enabled PostgreSQL [trigram extension](https://www.postgresql.org/docs/current/static/pgtrgm.html) to assist in 'fuzzy matching' search queries.
 
-One special mention was the [decorator pattern](https://github.com/drapergem/draper) initialised at particular points within the application (such as [user flair](app/decorators/user_decorator.rb)).
-
-This application observes the [YAGNI](https://ronjeffries.com/xprog/articles/practices/pracnotneed/) and [KISS](http://people.apache.org/~fhanik/kiss.html) principles. If this application were to scale much larger than a normal internal tool, I would look to use [searchkick](https://github.com/ankane/searchkick) for elasticsearch implementation. I could see upvote/downvote logic being a pinchpoint at large scales that could be resolved using read/write to a [redis store](https://github.com/redis/redis-rb). Anything beyond the simple current authorities of 'power user' and 'moderator' would benefit from a [CanCanCan](https://github.com/CanCanCommunity/cancancan) or [Pundit](https://github.com/varvet/pundit) authorisation library.
+One special mention is the [decorator pattern](https://github.com/drapergem/draper) initialised at particular points within the application (such as [user flair](app/decorators/user_decorator.rb)).
 
 The user voting feature uses a polymorphic association between `Vote` with `Question` and `Answer` associating to `votable`. Upvote vs. downvote is set on a type attribute on `vote`.
 
@@ -31,12 +33,18 @@ Its notable features are:
 - You can sort question index by recent or most popular.
 - CI build hooked up with [Travis-ci](https://travis-ci.com/Schwad/query_pad)
 
+### Constraints
+
+I built this application expecting a relatively small database (< 10k Q's+A's), and a commensurate request volume. I also limited myself to a seven-day build-cycle, working in evenings where permissible. This allowed me to fulfill the specifications and add a handful of extended features, detailed below. The application must pass a traditional ci build (RSpec/brakeman/bundler-audit) and have >95% test coverage.
+
+This application observes the [YAGNI](https://ronjeffries.com/xprog/articles/practices/pracnotneed/) and [KISS](http://people.apache.org/~fhanik/kiss.html) principles. If this application were to scale much larger than a normal internal tool, I would look to use [searchkick](https://github.com/ankane/searchkick) for elasticsearch implementation. I could see upvote/downvote logic being a pinchpoint at large scales. That could be resolved using read/write to a [redis store](https://github.com/redis/redis-rb). Anything beyond the simple current authorities of 'power user' and 'moderator' would benefit from a [CanCanCan](https://github.com/CanCanCommunity/cancancan) or [Pundit](https://github.com/varvet/pundit) authorisation library.
+
 ## Versions
 
 - Ruby: 2.5.1
-- Rails: 5.2.1
+- Rails: 5.2.0
 
-## Getting started
+## Run the application in development
 
 Run `bin/setup` to setup your development environment and install any needed dependencies.
 

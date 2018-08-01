@@ -32,5 +32,7 @@ deploy:
   on: master
   app: query-pad
   run:
-  - rake db:migrate
-  - rake cleanup
+    - git add -A
+    - git commit -m 'deploy'
+    - rake db:migrate
+    - rake cleanup
