@@ -4,6 +4,8 @@ class Answer < ApplicationRecord
   belongs_to :question, touch: true
   has_many :votes, as: :votable
 
+  alias_attribute :answered_question, :question
+
   validates :body, presence: true
 
   def question_title

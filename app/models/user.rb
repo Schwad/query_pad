@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :questions
   has_many :answers
-  has_many :answered_questions, through: :answers, class_name: 'Question'
+  has_many :answered_questions, through: :answers, source: :question
   has_many :votes
   has_many :voted_questions, through: :votes, source: :votable, source_type: 'Question'
   has_many :voted_answers, through: :votes, source: :votable, source_type: 'Answer'
