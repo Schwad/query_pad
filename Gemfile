@@ -23,6 +23,8 @@ gem 'draper'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'progress_bar', require: false
+gem 'brakeman'
+gem 'bundler-audit'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
