@@ -15,7 +15,6 @@ before_install:
 install:
   - bin/bundle install --path vendor/bundle
 before_script:
-# - psql -c 'create database QueryPad_test;' -U postgres
   - bin/rake db:create RAILS_ENV=test
   - bin/rake db:migrate RAILS_ENV=test
 jobs:
