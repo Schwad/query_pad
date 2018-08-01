@@ -8,7 +8,6 @@
             = @question.score
     - if current_user.questions.include?(@question) || moderator_user
       %hr
-      %br
       .row.form-group
         .col-md-5
           = link_to 'edit', edit_user_question_path(current_user, @question), class: 'btn btn-md btn-outline-info'
