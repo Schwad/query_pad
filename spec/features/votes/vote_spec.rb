@@ -15,25 +15,25 @@ feature 'Votes' do
     end
 
     scenario 'can upvote question' do
-      within('div#question') do
+      within('#question') do
         click_on '⬆️'
       end
-      expect(page).to have_content('🔺')
+      expect(page).to have_content('👍')
       expect(other_question.votes.count).to eq(1)
       expect(user.votes.count).to eq(1)
     end
 
     scenario 'can upvote answer' do
-      within('div#answers') do
+      within('#answers') do
         click_on '⬆️'
       end
-      expect(page).to have_content('🔺')
+      expect(page).to have_content('👍')
       expect(other_answer.votes.count).to eq(1)
       expect(user.votes.count).to eq(1)
     end
 
     scenario 'can cancel out prior vote' do
-      within('div#question') do
+      within('#question') do
         click_on '⬆️'
         click_on '⬆️'
       end
@@ -53,7 +53,7 @@ feature 'Votes' do
     scenario 'vote changes user score' do
       expect(other_user.score).to eq(0)
       expect(other_question.score).to eq(0)
-      within('div#question') do
+      within('#question') do
         click_on '⬆️'
       end
       expect(User.last.score).to eq(1)
@@ -69,12 +69,12 @@ feature 'Votes' do
     end
 
     scenario 'can downvote' do
-      within('div#question') do
+      within('#question') do
         click_on '⬇️'
       end
       expect(User.last.score).to eq(-1)
     end
-    
+
     scenario 'has power user flair' do
       visit question_path(question)
       expect(page).to have_content('power user')
@@ -88,7 +88,7 @@ feature 'Votes' do
       visit question_path(other_question)
     end
     scenario 'can downvote' do
-      within('div#question') do
+      within('#question') do
         click_on '⬇️'
       end
       expect(User.last.score).to eq(-1)
@@ -96,7 +96,7 @@ feature 'Votes' do
 
     scenario 'has moderator flair' do
       visit question_path(question)
-      expect(page).to have_content('power user')
+      expect(page).to have_content('moderator')
     end
   end
 end

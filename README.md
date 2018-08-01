@@ -4,7 +4,7 @@
 
 ## Notes from the author
 
-This is a private, internal application that allows users to post and answer questions. They may also search for relevant questions.
+This is a private, internal application that allows users to post and answer questions. They may also search questions.
 
 I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (devise, elasticsearch, postgres, bootstrap, heroku deployment, RSpec, Capybara).
 
@@ -26,6 +26,7 @@ Its notable features are:
 - Users with a 'score' above 50 may 'delete' posts.
   * 'Deleted' posts are preserved in the database but hidden on the front end (using [acts_as_paranoid](https://github.com/rubysherpas/paranoia)).
   * Users lose five points for deleting a post and must supply a reason for deletion.
+- You can sort question index by recent or most popular.
 - CI build hooked up with [Travis-ci](https://travis-ci.com/Schwad/query_pad)
 
 ## Versions

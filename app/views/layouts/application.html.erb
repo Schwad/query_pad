@@ -10,18 +10,15 @@
   </head>
 
   <body>
-    <%= form_with url: search_questions_path, local: true do |f| %>
-      <%= f.label :q, 'Search Questions' %>
-      <%= f.search_field :q %>
-      <%= f.submit 'Search' %>
-    <% end %>
-    <% if current_user %>
-      <p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </p>
-    <% else %>
-      <p> <%= link_to 'Sign in with Google', user_google_oauth2_omniauth_authorize_path %> </p>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class='container'>
+      <div class='header clearfix'>
+        <%= render 'layouts/nav' %>
+      </div>
+      <!-- <p class='notice'><%= notice %></p>
+      <p class='alert'><%= alert %></p> -->
+      <%= render partial: 'layouts/flash_messages', flash: flash %>
+      <br>
+      <%= yield %>
+    </div>
   </body>
 </html>

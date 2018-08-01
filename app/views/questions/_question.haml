@@ -1,3 +1,10 @@
-%tr
-  %td= question.user.email
-  %td= link_to "#{question.title} - #{question.score}", question
+- cache question do
+  .row.form-group
+    .col-md-9
+      .row
+        .col-md-12
+          %h4
+            =link_to question.title, question
+      .row
+        .col-md-12
+          %em="#{ question.user.email } asked #{ distance_of_time_in_words(Time.now, question.created_at) } ago | #{ question.user.decorate.flair }| #{question.answers.count} answer(s) | #{question.score} point(s)".html_safe
