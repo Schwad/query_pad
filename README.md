@@ -4,7 +4,7 @@
 
 ## Notes from the author
 
-This is a private, internal application that allows users to post and answer questions. They may also search for relevant questions.
+This is a private, internal application that allows users to post and answer questions. They may also search questions.
 
 I approached this project very simply. I aimed to use the tools closest to my toolbox- straightforward REST/CRUD with Rails-based conventions and common tooling (devise, elasticsearch, postgres, bootstrap, heroku deployment, RSpec, Capybara).
 
