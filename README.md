@@ -52,7 +52,7 @@ Run `rake`.
 
 ## Auth
 
-Using Google Oauth with [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2) gem alongside [devise](https://github.com/plataformatec/devise).
+Using Google Oauth with the [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2) gem alongside [devise](https://github.com/plataformatec/devise).
 
 ## Secrets
 
